@@ -1,0 +1,330 @@
+-- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: CARLOCA
+-- ------------------------------------------------------
+-- Server version	8.0.32
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `CARLOCA`
+--
+
+DROP TABLE IF EXISTS `CARLOCA`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `CARLOCA` (
+  `ID_CARLOCA` int NOT NULL AUTO_INCREMENT,
+  `ID_FILIAL` int NOT NULL,
+  PRIMARY KEY (`ID_CARLOCA`),
+  KEY `ID_FILIAL_idx` (`ID_FILIAL`),
+  CONSTRAINT `ID_FILIAL` FOREIGN KEY (`ID_FILIAL`) REFERENCES `FILILAL` (`ID_FILIAL`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `CARLOCA`
+--
+
+LOCK TABLES `CARLOCA` WRITE;
+/*!40000 ALTER TABLE `CARLOCA` DISABLE KEYS */;
+INSERT INTO `CARLOCA` VALUES (1,1),(2,2);
+/*!40000 ALTER TABLE `CARLOCA` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `CARRO`
+--
+
+DROP TABLE IF EXISTS `CARRO`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `CARRO` (
+  `ID_CARRO` int NOT NULL AUTO_INCREMENT,
+  `MODELO` varchar(45) NOT NULL,
+  `MONTADORA` varchar(45) NOT NULL,
+  `ID_COR` int NOT NULL,
+  `VERSAO` varchar(45) NOT NULL,
+  `ID_CATEGORIA` int NOT NULL,
+  PRIMARY KEY (`ID_CARRO`),
+  KEY `ID_COR_idx` (`ID_COR`),
+  KEY `ID_CATEGORIA_idx` (`ID_CATEGORIA`),
+  CONSTRAINT `ID_CATEGORIA` FOREIGN KEY (`ID_CATEGORIA`) REFERENCES `CATEGORIA` (`ID_CATEGORIA`),
+  CONSTRAINT `ID_COR` FOREIGN KEY (`ID_COR`) REFERENCES `COR` (`ID_COR`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `CARRO`
+--
+
+LOCK TABLES `CARRO` WRITE;
+/*!40000 ALTER TABLE `CARRO` DISABLE KEYS */;
+INSERT INTO `CARRO` VALUES (1,'GOL','VW',1,'1.0',1),(2,'MOBI','FIAT',2,'1.0',2),(3,'HRV','HONDA',3,'2.0',4);
+/*!40000 ALTER TABLE `CARRO` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `CATEGORIA`
+--
+
+DROP TABLE IF EXISTS `CATEGORIA`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `CATEGORIA` (
+  `ID_CATEGORIA` int NOT NULL AUTO_INCREMENT,
+  `NOME` varchar(45) NOT NULL,
+  PRIMARY KEY (`ID_CATEGORIA`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `CATEGORIA`
+--
+
+LOCK TABLES `CATEGORIA` WRITE;
+/*!40000 ALTER TABLE `CATEGORIA` DISABLE KEYS */;
+INSERT INTO `CATEGORIA` VALUES (1,'Hatch'),(2,'Sedan Compacto'),(3,'Sedan Medio'),(4,'SUV');
+/*!40000 ALTER TABLE `CATEGORIA` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `CLIENTE`
+--
+
+DROP TABLE IF EXISTS `CLIENTE`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `CLIENTE` (
+  `ID_CLIENTE` int NOT NULL AUTO_INCREMENT,
+  `NOME` varchar(45) NOT NULL,
+  `CPF` varchar(45) NOT NULL,
+  PRIMARY KEY (`ID_CLIENTE`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `CLIENTE`
+--
+
+LOCK TABLES `CLIENTE` WRITE;
+/*!40000 ALTER TABLE `CLIENTE` DISABLE KEYS */;
+INSERT INTO `CLIENTE` VALUES (1,'Kleber','36636635920'),(2,'Vitor','22255565887');
+/*!40000 ALTER TABLE `CLIENTE` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `COR`
+--
+
+DROP TABLE IF EXISTS `COR`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `COR` (
+  `ID_COR` int NOT NULL AUTO_INCREMENT,
+  `NOME` varchar(45) NOT NULL,
+  PRIMARY KEY (`ID_COR`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `COR`
+--
+
+LOCK TABLES `COR` WRITE;
+/*!40000 ALTER TABLE `COR` DISABLE KEYS */;
+INSERT INTO `COR` VALUES (1,'Branco'),(2,'Preto'),(3,'Prata');
+/*!40000 ALTER TABLE `COR` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ENTREGA_LOCACAO`
+--
+
+DROP TABLE IF EXISTS `ENTREGA_LOCACAO`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ENTREGA_LOCACAO` (
+  `ID_ENTREGA` int NOT NULL AUTO_INCREMENT,
+  `KM_ENTREGA` double NOT NULL,
+  `ID_FILIAL_ENTREGA` int NOT NULL,
+  PRIMARY KEY (`ID_ENTREGA`),
+  KEY `ID_FILIAL_idx` (`ID_FILIAL_ENTREGA`),
+  CONSTRAINT `ID_FILIAL_ENTREGA` FOREIGN KEY (`ID_FILIAL_ENTREGA`) REFERENCES `CARLOCA` (`ID_FILIAL`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ENTREGA_LOCACAO`
+--
+
+LOCK TABLES `ENTREGA_LOCACAO` WRITE;
+/*!40000 ALTER TABLE `ENTREGA_LOCACAO` DISABLE KEYS */;
+INSERT INTO `ENTREGA_LOCACAO` VALUES (1,100,1),(2,150,2);
+/*!40000 ALTER TABLE `ENTREGA_LOCACAO` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `FILILAL`
+--
+
+DROP TABLE IF EXISTS `FILILAL`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `FILILAL` (
+  `ID_FILIAL` int NOT NULL AUTO_INCREMENT,
+  `NOME_FANTASIA` varchar(45) NOT NULL,
+  `RAZAO_SOCIAL` varchar(45) NOT NULL,
+  `CNPJ` varchar(45) NOT NULL,
+  PRIMARY KEY (`ID_FILIAL`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `FILILAL`
+--
+
+LOCK TABLES `FILILAL` WRITE;
+/*!40000 ALTER TABLE `FILILAL` DISABLE KEYS */;
+INSERT INTO `FILILAL` VALUES (1,'Caroloca1','CarlocaForever','0002225551100'),(2,'Carloca2','CarlocaSempre','2002225566666');
+/*!40000 ALTER TABLE `FILILAL` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `HISTORICO_LOCACAO`
+--
+
+DROP TABLE IF EXISTS `HISTORICO_LOCACAO`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `HISTORICO_LOCACAO` (
+  `ID_HISTORICO` int NOT NULL AUTO_INCREMENT,
+  `ID_CLILENTE_HISTORICO` int NOT NULL,
+  `ID_CARRO_HISTORICO` int NOT NULL,
+  `ID_ENTREGA_HISTORICO` int NOT NULL,
+  `KM_RODADO` double NOT NULL,
+  PRIMARY KEY (`ID_HISTORICO`),
+  KEY `ID_CLIENTE_idx` (`ID_CLILENTE_HISTORICO`),
+  KEY `ID_CARRO_HISTORICO_idx` (`ID_CARRO_HISTORICO`),
+  KEY `ID_ENTREGA_HISTORICO_idx` (`ID_ENTREGA_HISTORICO`),
+  CONSTRAINT `ID_CARRO_HISTORICO` FOREIGN KEY (`ID_CARRO_HISTORICO`) REFERENCES `CARRO` (`ID_CARRO`),
+  CONSTRAINT `ID_CLIENTE_HISTORICO` FOREIGN KEY (`ID_CLILENTE_HISTORICO`) REFERENCES `CLIENTE` (`ID_CLIENTE`),
+  CONSTRAINT `ID_ENTREGA_HISTORICO` FOREIGN KEY (`ID_ENTREGA_HISTORICO`) REFERENCES `ENTREGA_LOCACAO` (`ID_ENTREGA`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `HISTORICO_LOCACAO`
+--
+
+LOCK TABLES `HISTORICO_LOCACAO` WRITE;
+/*!40000 ALTER TABLE `HISTORICO_LOCACAO` DISABLE KEYS */;
+INSERT INTO `HISTORICO_LOCACAO` VALUES (3,1,1,1,100),(4,2,2,2,150);
+/*!40000 ALTER TABLE `HISTORICO_LOCACAO` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `LOCACAO`
+--
+
+DROP TABLE IF EXISTS `LOCACAO`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `LOCACAO` (
+  `ID_LOCACAO` int NOT NULL AUTO_INCREMENT,
+  `ID_CLIENTE` int NOT NULL,
+  `ID_CARRO` int NOT NULL,
+  `ID_MODALIDADE` int NOT NULL,
+  `ALUGADO` tinyint NOT NULL,
+  `KM_ATUAL` varchar(45) NOT NULL,
+  `ID_FILIAL_LOCACAO` int NOT NULL,
+  PRIMARY KEY (`ID_LOCACAO`),
+  KEY `ID_CLIENTE_idx` (`ID_CLIENTE`),
+  KEY `ID_CARRO_idx` (`ID_CARRO`),
+  KEY `ID_MODALIDADE_idx` (`ID_MODALIDADE`),
+  CONSTRAINT `ID_CARRO` FOREIGN KEY (`ID_CARRO`) REFERENCES `CARRO` (`ID_CARRO`),
+  CONSTRAINT `ID_CLIENTE` FOREIGN KEY (`ID_CLIENTE`) REFERENCES `CLIENTE` (`ID_CLIENTE`),
+  CONSTRAINT `ID_MODALIDADE` FOREIGN KEY (`ID_MODALIDADE`) REFERENCES `MODALIDADE` (`ID_MODALIDADE`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `LOCACAO`
+--
+
+LOCK TABLES `LOCACAO` WRITE;
+/*!40000 ALTER TABLE `LOCACAO` DISABLE KEYS */;
+INSERT INTO `LOCACAO` VALUES (1,1,1,1,1,'50',1),(2,2,2,1,1,'100',2);
+/*!40000 ALTER TABLE `LOCACAO` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`%`*/ /*!50003 TRIGGER `LOCACAO_BEFORE_INSERT` BEFORE INSERT ON `LOCACAO` FOR EACH ROW BEGIN
+	IF (NEW.ALUGADO != TRUE) THEN
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'SO É PERMITIDO UMA LOCAÇÃO';
+    END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `MODALIDADE`
+--
+
+DROP TABLE IF EXISTS `MODALIDADE`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `MODALIDADE` (
+  `ID_MODALIDADE` int NOT NULL AUTO_INCREMENT,
+  `NOME` varchar(25) NOT NULL,
+  PRIMARY KEY (`ID_MODALIDADE`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `MODALIDADE`
+--
+
+LOCK TABLES `MODALIDADE` WRITE;
+/*!40000 ALTER TABLE `MODALIDADE` DISABLE KEYS */;
+INSERT INTO `MODALIDADE` VALUES (1,'DIARIA'),(2,'MENSAL'),(3,'ANUAL');
+/*!40000 ALTER TABLE `MODALIDADE` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping events for database 'CARLOCA'
+--
+
+--
+-- Dumping routines for database 'CARLOCA'
+--
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-02-24  9:13:04
